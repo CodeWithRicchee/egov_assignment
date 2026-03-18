@@ -1,0 +1,189 @@
+{
+  "screenId": "employee_employment_details",
+  "title": "Employee Details",
+  "stepIndex": 2,
+  "totalSteps": 3,
+  "version": "1.0.0",
+  "sections": [
+    {
+      "sectionId": "employment_form",
+      "type": "form",
+      "components": [
+        {
+          "componentId": "employment_type_field",
+          "type": "dropdown",
+          "properties": {
+            "label": "Employment Type",
+            "hint": "Select employment type",
+            "fieldKey": "employmentType",
+            "mandatory": true,
+            "dataSource": {
+              "type": "mdms",
+              "schemaCode": "egov-hrms.EmployeeType",
+              "labelKey": "name",
+              "valueKey": "code"
+            },
+            "validations": [
+              { "type": "required", "message": "Employment type is required" }
+            ]
+          }
+        },
+        {
+          "componentId": "date_of_appointment_field",
+          "type": "date_picker",
+          "properties": {
+            "label": "Date of Appointment",
+            "hint": "Select appointment date",
+            "fieldKey": "dateOfAppointment",
+            "mandatory": true,
+            "maxDateRule": {
+              "type": "today"
+            },
+            "validations": [
+              { "type": "required", "message": "Date of appointment is required" }
+            ]
+          }
+        },
+        {
+          "componentId": "department_field",
+          "type": "dropdown",
+          "properties": {
+            "label": "Department",
+            "hint": "Select department",
+            "fieldKey": "department",
+            "mandatory": true,
+            "dataSource": {
+              "type": "mdms",
+              "schemaCode": "common-masters.Department",
+              "labelKey": "name",
+              "valueKey": "code"
+            },
+            "validations": [
+              { "type": "required", "message": "Department is required" }
+            ]
+          }
+        },
+        {
+          "componentId": "designation_field",
+          "type": "dropdown",
+          "properties": {
+            "label": "Designation",
+            "hint": "Select designation",
+            "fieldKey": "designation",
+            "mandatory": true,
+            "dataSource": {
+              "type": "mdms",
+              "schemaCode": "common-masters.Designation",
+              "labelKey": "name",
+              "valueKey": "code"
+            },
+            "validations": [
+              { "type": "required", "message": "Designation is required" }
+            ]
+          }
+        },
+        {
+          "componentId": "roles_field",
+          "type": "multi_select_dropdown",
+          "properties": {
+            "label": "Roles",
+            "hint": "Select one or more roles",
+            "fieldKey": "roles",
+            "mandatory": true,
+            "dataSource": {
+              "type": "mdms",
+              "schemaCode": "ACCESSCONTROL-ROLES.roles",
+              "labelKey": "name",
+              "valueKey": "code"
+            },
+            "validations": [
+              { "type": "required", "message": "At least one role is required" },
+              { "type": "min_select", "value": 1, "message": "Select at least one role" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "boundary_section",
+      "type": "form",
+      "sectionTitle": "Boundary Area",
+      "components": [
+        {
+          "componentId": "country_field",
+          "type": "dropdown",
+          "properties": {
+            "label": "Country",
+            "hint": "Select country",
+            "fieldKey": "boundaryCountry",
+            "mandatory": true,
+            "dataSource": {
+              "type": "boundary",
+              "level": 0,
+              "parentKey": null
+            },
+            "validations": [
+              { "type": "required", "message": "Country is required" }
+            ]
+          }
+        },
+        {
+          "componentId": "province_field",
+          "type": "dropdown",
+          "properties": {
+            "label": "Province",
+            "hint": "Select province",
+            "fieldKey": "boundaryProvince",
+            "mandatory": false,
+            "dependsOn": "boundaryCountry",
+            "dataSource": {
+              "type": "boundary",
+              "level": 1,
+              "parentKey": "boundaryCountry"
+            },
+            "validations": []
+          }
+        },
+        {
+          "componentId": "district_field",
+          "type": "dropdown",
+          "properties": {
+            "label": "District",
+            "hint": "Select district",
+            "fieldKey": "boundaryDistrict",
+            "mandatory": false,
+            "dependsOn": "boundaryProvince",
+            "dataSource": {
+              "type": "boundary",
+              "level": 2,
+              "parentKey": "boundaryProvince"
+            },
+            "validations": []
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "step3_actions",
+      "type": "actions",
+      "components": [
+        {
+          "componentId": "back_button",
+          "type": "secondary_button",
+          "properties": {
+            "label": "Back",
+            "action": "navigate_back"
+          }
+        },
+        {
+          "componentId": "submit_button",
+          "type": "primary_button",
+          "properties": {
+            "label": "Submit",
+            "action": "submit_employee"
+          }
+        }
+      ]
+    }
+  ]
+}

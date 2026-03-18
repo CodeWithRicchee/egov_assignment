@@ -1,0 +1,91 @@
+{
+  "screenId": "login_screen",
+  "title": "Sign In",
+  "version": "1.0.0",
+  "sections": [
+    {
+      "sectionId": "login_header",
+      "type": "header",
+      "components": [
+        {
+          "componentId": "app_logo",
+          "type": "image",
+          "properties": {
+            "assetPath": "assets/images/logo.png",
+            "width": 80,
+            "height": 80,
+            "fallbackIcon": "account_circle"
+          }
+        },
+        {
+          "componentId": "app_title",
+          "type": "text",
+          "properties": {
+            "text": "Employee Management",
+            "style": "heading_large"
+          }
+        },
+        {
+          "componentId": "app_subtitle",
+          "type": "text",
+          "properties": {
+            "text": "Sign in to continue",
+            "style": "body_medium",
+            "color": "secondary"
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "login_form",
+      "type": "form",
+      "components": [
+        {
+          "componentId": "username_field",
+          "type": "text_input",
+          "properties": {
+            "label": "Username",
+            "hint": "Enter your username",
+            "fieldKey": "username",
+            "mandatory": true,
+            "prefixIcon": "person_outline",
+            "keyboardType": "text",
+            "validations": [
+              { "type": "required", "message": "Username is required" }
+            ]
+          }
+        },
+        {
+          "componentId": "password_field",
+          "type": "password_input",
+          "properties": {
+            "label": "Password",
+            "hint": "Enter your password",
+            "fieldKey": "password",
+            "mandatory": true,
+            "prefixIcon": "lock_outline",
+            "showToggle": true,
+            "validations": [
+              { "type": "required", "message": "Password is required" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "login_actions",
+      "type": "actions",
+      "components": [
+        {
+          "componentId": "login_button",
+          "type": "primary_button",
+          "properties": {
+            "label": "Sign In",
+            "action": "submit_login",
+            "fullWidth": true
+          }
+        }
+      ]
+    }
+  ]
+}

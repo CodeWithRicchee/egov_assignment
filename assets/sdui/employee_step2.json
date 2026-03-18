@@ -1,0 +1,145 @@
+{
+  "screenId": "employee_personal_details",
+  "title": "Personal Details",
+  "stepIndex": 1,
+  "totalSteps": 3,
+  "version": "1.0.0",
+  "sections": [
+    {
+      "sectionId": "personal_details_form",
+      "type": "form",
+      "components": [
+        {
+          "componentId": "name_field",
+          "type": "text_input",
+          "properties": {
+            "label": "Name",
+            "hint": "Enter full name",
+            "fieldKey": "name",
+            "mandatory": true,
+            "prefixIcon": "badge_outlined",
+            "keyboardType": "text",
+            "validations": [
+              { "type": "required", "message": "Name is required" }
+            ]
+          }
+        },
+        {
+          "componentId": "mobile_field",
+          "type": "text_input",
+          "properties": {
+            "label": "Mobile Number",
+            "hint": "Enter 10-digit mobile number",
+            "fieldKey": "mobileNumber",
+            "mandatory": true,
+            "prefixIcon": "phone_outlined",
+            "keyboardType": "number",
+            "maxLength": 10,
+            "asyncValidation": {
+              "type": "unique_check",
+              "apiParam": "phone",
+              "errorMessage": "This mobile number is already registered"
+            },
+            "validations": [
+              { "type": "required", "message": "Mobile number is required" },
+              {
+                "type": "regex",
+                "pattern": "^[0-9]{10}$",
+                "message": "Must be exactly 10 digits"
+              }
+            ]
+          }
+        },
+        {
+          "componentId": "gender_field",
+          "type": "dropdown",
+          "properties": {
+            "label": "Gender",
+            "hint": "Select gender",
+            "fieldKey": "gender",
+            "mandatory": true,
+            "dataSource": {
+              "type": "mdms",
+              "schemaCode": "common-masters.GenderType",
+              "labelKey": "name",
+              "valueKey": "code"
+            },
+            "validations": [
+              { "type": "required", "message": "Gender is required" }
+            ]
+          }
+        },
+        {
+          "componentId": "dob_field",
+          "type": "date_picker",
+          "properties": {
+            "label": "Date of Birth",
+            "hint": "Select date of birth",
+            "fieldKey": "dateOfBirth",
+            "mandatory": true,
+            "maxDateRule": {
+              "type": "years_before_today",
+              "years": 18
+            },
+            "validations": [
+              { "type": "required", "message": "Date of birth is required" }
+            ]
+          }
+        },
+        {
+          "componentId": "email_field",
+          "type": "text_input",
+          "properties": {
+            "label": "Email",
+            "hint": "Enter email address (optional)",
+            "fieldKey": "email",
+            "mandatory": false,
+            "prefixIcon": "email_outlined",
+            "keyboardType": "email",
+            "validations": [
+              {
+                "type": "regex_if_not_empty",
+                "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+                "message": "Enter a valid email address"
+              }
+            ]
+          }
+        },
+        {
+          "componentId": "address_field",
+          "type": "text_area",
+          "properties": {
+            "label": "Correspondence Address",
+            "hint": "Enter address (optional)",
+            "fieldKey": "correspondenceAddress",
+            "mandatory": false,
+            "maxLines": 4,
+            "validations": []
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "step2_actions",
+      "type": "actions",
+      "components": [
+        {
+          "componentId": "back_button",
+          "type": "secondary_button",
+          "properties": {
+            "label": "Back",
+            "action": "navigate_back"
+          }
+        },
+        {
+          "componentId": "next_button",
+          "type": "primary_button",
+          "properties": {
+            "label": "Next",
+            "action": "navigate_next"
+          }
+        }
+      ]
+    }
+  ]
+}

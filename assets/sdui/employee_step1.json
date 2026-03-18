@@ -1,0 +1,85 @@
+{
+  "screenId": "employee_login_details",
+  "title": "Login Details",
+  "stepIndex": 0,
+  "totalSteps": 3,
+  "version": "1.0.0",
+  "sections": [
+    {
+      "sectionId": "login_details_form",
+      "type": "form",
+      "components": [
+        {
+          "componentId": "username_field",
+          "type": "text_input",
+          "properties": {
+            "label": "Username",
+            "hint": "Enter unique username",
+            "fieldKey": "username",
+            "mandatory": true,
+            "prefixIcon": "person_outline",
+            "keyboardType": "text",
+            "asyncValidation": {
+              "type": "unique_check",
+              "apiParam": "codes",
+              "errorMessage": "This username is already taken"
+            },
+            "validations": [
+              { "type": "required", "message": "Username is required" },
+              { "type": "min_length", "value": 3, "message": "Username must be at least 3 characters" }
+            ]
+          }
+        },
+        {
+          "componentId": "password_field",
+          "type": "password_input",
+          "properties": {
+            "label": "Password",
+            "hint": "Enter password",
+            "fieldKey": "password",
+            "mandatory": true,
+            "showToggle": true,
+            "validations": [
+              { "type": "required", "message": "Password is required" },
+              {
+                "type": "regex",
+                "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d@]{8,}$",
+                "message": "Min 8 chars with uppercase, lowercase, number. Only @ special char allowed"
+              }
+            ]
+          }
+        },
+        {
+          "componentId": "confirm_password_field",
+          "type": "password_input",
+          "properties": {
+            "label": "Confirm Password",
+            "hint": "Re-enter password",
+            "fieldKey": "confirmPassword",
+            "mandatory": true,
+            "showToggle": true,
+            "validations": [
+              { "type": "required", "message": "Confirm password is required" },
+              { "type": "match_field", "matchKey": "password", "message": "Passwords do not match" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sectionId": "step1_actions",
+      "type": "actions",
+      "components": [
+        {
+          "componentId": "next_button",
+          "type": "primary_button",
+          "properties": {
+            "label": "Next",
+            "action": "navigate_next",
+            "fullWidth": true
+          }
+        }
+      ]
+    }
+  ]
+}
